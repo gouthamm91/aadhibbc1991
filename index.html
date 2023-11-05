@@ -133,8 +133,25 @@
 		<option value=" "> </option>
 		<option value="Inserted">Inserted</option>
 	</select>
-	<input value="Search Stars" type="button" onclick="updateUrl()">
-	<input value="Search Celebs" type="button" onclick="celebUpdateUrl()">
+	<input value="Search Stars" type="button" onclick="updateUrl()"/>
+	<input value="Search Celebs" type="button" onclick="celebUpdateUrl()"/>
+	<input value="My Favorites" type="button" onclick="loadAllButtons('confdata', 'outputdiv')"/>
+	<textarea id="confdata" style="display: none;">
+	heather vahn mother's favor = https://www.fpo.xxx/videos/91444/heather-vahn-mother-s-favor/
+	heather vahn sleepover = https://noodlemagazine.com/watch/-161003282_456239077
+	krissy lynn stepmom shares a room = https://www.multi.xxx/videos/136591/stepmom-and-stepson-share-a-room-on-vacation-krissy-lynn/
+	bridgette b virgin son = https://txxx.com/videos/7513843/bridgette-b-takes-stepsons-virginity/?kt_lang=en
+	kathia nobili on the phone = https://mat6tube.com/watch/-143408597_456239019
+	danica dillon mothers day = https://noodlemagazine.com/watch/-167219025_456239568
+	lisa ann stepmom shares a room = https://spankbang.party/272l0/video/hotel+stepmom+and+sex
+	lisa ann classic mom = https://spankbang.com/65n0l/video/big+ass+milf+and+lazy+stepson
+	ariella ferrera mom under influence = https://noodlemagazine.com/watch/-209141133_456243753
+	anna gold on couch = https://www.xnxx115.com/video-ky7i41/sex_with_s._girl_friend
+	aubrey black threesome with teens = https://noodlemagazine.com/watch/-34655362_456239726
+	brandi love selfie = https://txxx.com/videos/14901069/hot-mom-porn-video-featuring-cali-sparks-and-brandi-love/?kt_lang=en
+	pamela price stepmom = https://spankbang.party/2inty/video/stepmom
+	</textarea>
+		
 	</center>
 <!-- 	</form> -->
 	<div id="outputdiv" class="out"></div>
@@ -442,6 +459,42 @@
 				}
 			}
 		}
+		
+		function loadAllButtons(confid, outid) {
+		var confDataStr = document.getElementById(confid).value.trim();
+		var confUrlDelim = ' = ';
+		var confDataArr = confDataStr.split('\n');
+		var outputElement = document.getElementById(outid);
+
+		outputElement.innerHTML = '';
+
+		for (let i=0; i<confDataArr.length; i++) {
+			var currLine = confDataArr[i].trim();
+			if (currLine != '') {
+				var url = currLine.split(confUrlDelim)[1];
+				var title = currLine.split(confUrlDelim)[0];
+				var starname = title.split(' ')[0] + ' ' + title.split(' ')[1];
+
+				var name = starname.toLowerCase();
+				var namef = findName(name, collectionName);
+
+				console.log('\nAfter Find Name namef:')
+				console.log('"'+namef+'"')
+
+				if (namef == '') {var namef = findCorrectSpelling(name, collectionName);}
+
+				var imgsrc = '';
+
+				if (namef in images) {
+					var imgsrc = images[namef];
+				} else {
+					var imgsrc = 'https://st.depositphotos.com/1364916/2024/v/950/depositphotos_20247467-stock-illustration-sexy-girl-logo.jpg';
+				}
+
+				outputElement.innerHTML = outputElement.innerHTML + '<button onclick="window.open(\''+url+'\')"><img src="'+imgsrc+'"><br>'+title+'</button>';
+			}
+		}
+	}
 	</script>
 
 
