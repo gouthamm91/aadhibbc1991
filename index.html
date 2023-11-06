@@ -58,7 +58,7 @@
 <body onload="processInput('')">
 <!-- 	<form> -->
 	<center>
-	<h2><a style="font-size: 200%;">🔥</a>Stars4U</h2>
+	<h2><a style="font-size: 200%;">🔥</a><u>Stars4U</u></h2>
 	<!-- <input type="search" id="inputbox" onchange="updateUrl()" style="width: 40%;"> -->
 	<!-- <input type="search" id="inputbox" style="width: 40%;"> -->
 	<input type="search" id="inputbox" style="width: 375px;" placeholder="Star/Celeb Name..."/>
@@ -136,7 +136,7 @@
 	</select>
 	<input value="Search Stars" type="button" onclick="updateUrl()"/>
 	<input value="Search Celebs" type="button" onclick="celebUpdateUrl()"/>
-	<input value="My Favorites" type="button" onclick="loadAllButtons('confdata', 'outputdiv')"/>
+	<input value="My Favorites" type="button" onclick="loadAllButtons('inputbox', 'confdata', 'outputdiv')"/>
 	<textarea id="confdata" style="display: none;">
 		heather vahn mother's favor = https://mat6tube.com/watch/-146565730_456239330
 		heather vahn sleepover = https://noodlemagazine.com/watch/-161003282_456239077
@@ -495,7 +495,9 @@
 			}
 		}
 
-	function loadAllButtons(confid, outid) {
+	function loadAllButtons(inpid, confid, outid) {
+		var inputStr = document.getElementById(inpid).value.trim();
+		var inputStrLowerCase = inputStr.toLowerCase();
 		var confDataStr = document.getElementById(confid).value.trim();
 		var confUrlDelim = ' = ';
 		var confDataArr = confDataStr.split('\n');
@@ -509,24 +511,36 @@
 				var url = currLine.split(confUrlDelim)[1];
 				var title = currLine.split(confUrlDelim)[0];
 				var starname = title.split(' ')[0] + ' ' + title.split(' ')[1];
-
-				var name = starname.toLowerCase();
-				var namef = findName(name, collectionName);
-
-				console.log('\nAfter Find Name namef:')
-				console.log('"'+namef+'"')
-
-				if (namef == '') {var namef = findCorrectSpelling(name, collectionName);}
-
-				var imgsrc = '';
-
-				if (namef in images) {
-					var imgsrc = images[namef];
+				
+				var flag = false;
+				var titleLowerCase = title.toLowerCase();
+				if (inputStrLowerCase != '') {
+					if (titleLowerCase.indexOf(inputStrLowerCase) > -1) {
+						var flag = true;
+					}
 				} else {
-					var imgsrc = 'https://st.depositphotos.com/1364916/2024/v/950/depositphotos_20247467-stock-illustration-sexy-girl-logo.jpg';
+					var flag = true;
 				}
 
-				outputElement.innerHTML = outputElement.innerHTML + '<button style="border: 0px solid grey; padding: 5px;" onclick="window.open(\''+url+'\')"><img style="width: 250px; height: auto; height: 370px;" src="'+imgsrc+'"><br>'+title+'</button>';
+				if (flag = true) {
+					var name = starname.toLowerCase();
+					var namef = findName(name, collectionName);
+
+					console.log('\nAfter Find Name namef:')
+					console.log('"'+namef+'"')
+
+					if (namef == '') {var namef = findCorrectSpelling(name, collectionName);}
+
+					var imgsrc = '';
+
+					if (namef in images) {
+						var imgsrc = images[namef];
+					} else {
+						var imgsrc = 'https://st.depositphotos.com/1364916/2024/v/950/depositphotos_20247467-stock-illustration-sexy-girl-logo.jpg';
+					}
+
+					outputElement.innerHTML = outputElement.innerHTML + '<button style="border: 0px solid grey; padding: 5px;" onclick="window.open(\''+url+'\')"><img style="width: 250px; height: auto; height: 370px;" src="'+imgsrc+'"><br>'+title+'</button>';
+				}
 			}
 		}
 	}
