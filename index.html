@@ -58,25 +58,26 @@
 <body onload="processInput('')">
 <!-- 	<form> -->
 	<center>
-	<h2><a style="font-size: 200%;">🔥</a>Stars4U</h2>
+	<h2><a style="font-size: 200%;">🔥</a><u>Stars4U</u></h2>
 	<!-- <input type="search" id="inputbox" onchange="updateUrl()" style="width: 40%;"> -->
 	<!-- <input type="search" id="inputbox" style="width: 40%;"> -->
 	<input type="search" id="inputbox" style="width: 375px;" placeholder="Star/Celeb Name..."/>
 	<select id="sufix">
+		<!-- <option value=""><a style="color: grey;">~~~~~Family~~~~~</a></option> -->
 		<option value=""></option>
-		<!-- <option value=""><a style="color: grey;">~~~~~Family~~~~~</a></option>
-		<option value="family">Family</option>
-		<option value="family+threesome">Family Threesome</option>
-		<option value="family+foursome">Family Foursome</option>
-		<option value="family+orgy">Family Orgy</option>
-		<option value=""></option>
-		<option value="milf">Milf</option>
 		<option value="mom">Mom</option>
 		<option value="stepmom">Stepmom</option>
 		<option value="mothers+day">Mothers Day</option>
 		<option value="mom+swap">Mom Swap</option>
 		<option value="mom+son">Mom Son</option>
+		<option value="mom+son">Mommys boy</option>
 		<option value="mommys+girl">Mommys Girl</option>
+		<option value="milf">Milf</option>
+		<option value=""></option>
+		<option value="family">Family</option>
+		<option value="family+threesome">Family Threesome</option>
+		<option value="family+foursome">Family Foursome</option>
+		<option value="family+orgy">Family Orgy</option>
 		<option value=""></option>
 		<option value="stepdad">Stepdad</option>
 		<option value="dad+daughter">Dad Daughter</option>
@@ -90,7 +91,8 @@
 		<option value="lesbian+threesome">Lesbian Threesome</option>
 		<option value="lesbian+foursome">Lesbian Foursome</option>
 		<option value="bukkake">Bukkake</option>
-		<option value="cum+facial">Cum Facial</option> -->
+		<option value="cum+facial">Cum Facial</option>
+		<option value=""></option>
 		<option value="Mom+Comes+First">Mom Comes First</option>
 		<option value="Mom+Is+Horny">Mom Is Horny</option>
 		<option value="Mom+Swap">Mom Swap</option>
@@ -134,9 +136,15 @@
 		<option value=" "> </option>
 		<option value="Inserted">Inserted</option>
 	</select>
-	<input value="Search Stars" type="button" onclick="updateUrl()"/>
-	<input value="Search Celebs" type="button" onclick="celebUpdateUrl()"/>
-	<input value="My Favorites" type="button" onclick="loadAllButtons('inputbox', 'confdata', 'outputdiv')"/>
+	<!-- <input value="Search Stars" type="button" onclick="updateUrl()"/> -->
+	<!-- <input value="Search Celebs" type="button" onclick="celebUpdateUrl()"/> -->
+	<!-- <input value="My Favorites" type="button" onclick="loadAllButtons('inputbox', 'confdata', 'outputdiv')"/> -->
+	<select id="categoryid" onchange="if (this.value == 'celebrity') {celebUpdateUrl();} else {if (this.value == 'pornstar') {updateUrl();} else {loadAllButtons('inputbox', 'confdata', 'outputdiv');}}">
+		<option value="celebrity">Celebrity</option>
+		<option value="pornstar">Pornstar</option>
+		<option value="favorites">Favorites</option>
+	</select>
+	<input type="button" value="Search" onclick="if (document.getElementById('categoryid').value == 'celebrity') {celebUpdateUrl();} else {if (document.getElementById('categoryid').value == 'pornstar') {updateUrl();} else {loadAllButtons('inputbox', 'confdata', 'outputdiv');}}"/>
 	<textarea id="confdata" style="display: none;">
 		heather vahn mother's favor = https://mat6tube.com/watch/-146565730_456239330
 		heather vahn sleepover = https://noodlemagazine.com/watch/-161003282_456239077
