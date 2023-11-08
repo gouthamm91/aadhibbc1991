@@ -202,11 +202,15 @@
 	<script type="text/javascript">
 
 		function updateUrl() {
-			window.location.href = '?search='+document.getElementById('inputbox').value.replace(/ /g, '+')+'&cat='+document.getElementById('sufix').value+'&star=true';
+			window.location.href = '?search='+document.getElementById('inputbox').value.replace(/ /g, '+')+'&cat='+document.getElementById('sufix').value+'&star=true'+'&group='+document.getElementById('categoryid').value;
 		}
 		
 		function celebUpdateUrl() {
-			window.location.href = '?search='+document.getElementById('inputbox').value.replace(/ /g, '+')+'&cat='+document.getElementById('sufix').value+'&star=false';
+			window.location.href = '?search='+document.getElementById('inputbox').value.replace(/ /g, '+')+'&cat='+document.getElementById('sufix').value+'&star=false'+'&group='+document.getElementById('categoryid').value;
+		}
+		
+		function favUpdateUrl() {
+			window.location.href = '?search='+document.getElementById('inputbox').value.replace(/ /g, '+')+'&cat='+document.getElementById('sufix').value++'&group='+document.getElementById('categoryid').value;
 		}
 		
 		function findCorrectSpelling(givenWord, collection) {
@@ -454,51 +458,83 @@
 		function processInput(name) {
 			var currUrl = window.location.href;
 			console.log('currUrl: '+ currUrl)
-			if (currUrl.indexOf('?') > -1 && currUrl.indexOf('search=') > -1 && currUrl.indexOf('star=true') > -1) {
-				if (currUrl.indexOf('?') > -1 && currUrl.indexOf('search=') > -1 && name == '') {
-					var name = currUrl.split('search=')[1].split('&')[0].replace(/\+/g, ' ').trim();
-				}
 
-				if (currUrl.indexOf('?') > -1 && currUrl.indexOf('cat=') > -1) {
+			if (currUrl.indexOf('?') > -1 && currUrl.indexOf('search=') > -1 && currUrl.indexOf('star=') <= -1) {
+				
+				var name = currUrl.split('search=')[1].split('&')[0].replace(/\+/g, ' ').trim();
+				document.getElementById('inputbox').value = name;
+
+				if (currUrl.indexOf('cat=') > -1) {
 					document.getElementById('sufix').value = currUrl.split('cat=')[1].split('&')[0];
 				}
-				
-				scrollableDiv = document.getElementById('outputdiv');
-	    			scrollableDiv.scrollTop = 0;
-				var name = name.toLowerCase();
-				var namef = findName(name, collectionName);
-				// var namef = '';
-				console.log('\nAfter Find Name namef:')
-				console.log('"'+namef+'"')
-				
-				if (namef == '') {var namef = findCorrectSpelling(name, collectionName);}
-				console.log('\nAfter Correct Spelling Name namef:')
-				console.log('"'+namef+'"')
-				
-				if (namef in vectorsAll) {
-					var inputVec = vectorsAll[namef];
-					var scores = cosineSimilarity(inputVec);
-					var sortedDict = sortDict(scores);
-					document.getElementById('outputdiv').innerHTML = imageUrls(sortedDict);
-					document.getElementById('inputbox').value = name;
-				} else {alert('name not found!!!')}
+
+				if (currUrl.indexOf('group=') > -1) {
+					document.getElementById('categoryid').value = currUrl.split('group=')[1].split('&')[0];
+				}
+
+				loadAllButtons('inputbox', 'confdata', 'outputdiv');
+
 			} else {
-				if (currUrl.indexOf('?') > -1 && currUrl.indexOf('search=') > -1 && currUrl.indexOf('star=true') <= -1) {
+
+				if (currUrl.indexOf('?') > -1 && currUrl.indexOf('search=') > -1 && currUrl.indexOf('star=true') > -1) {
 					if (currUrl.indexOf('?') > -1 && currUrl.indexOf('search=') > -1 && name == '') {
 						var name = currUrl.split('search=')[1].split('&')[0].replace(/\+/g, ' ').trim();
-						var namef = findName(name, celebCollectionName);
+					}
 
-						console.log('\nAfter Find Name namef:')
-						console.log('"'+namef+'"')
-						
-						if (namef == '') {var namef = findCorrectSpelling(name, collectionName);}
-						console.log('\nAfter Correct Spelling Name namef:')
-						console.log('"'+namef+'"')
+					if (currUrl.indexOf('?') > -1 && currUrl.indexOf('cat=') > -1) {
+						document.getElementById('sufix').value = currUrl.split('cat=')[1].split('&')[0];
+					}
+					
+					if (currUrl.indexOf('group=') > -1) {
+						document.getElementById('categoryid').value = currUrl.split('group=')[1].split('&')[0];
+					}
 
-						document.getElementById('outputdiv').innerHTML = celebImageUrls(namef)
+					scrollableDiv = document.getElementById('outputdiv');
+						scrollableDiv.scrollTop = 0;
+					var name = name.toLowerCase();
+					var namef = findName(name, collectionName);
+					// var namef = '';
+					console.log('\nAfter Find Name namef:')
+					console.log('"'+namef+'"')
+					
+					if (namef == '') {var namef = findCorrectSpelling(name, collectionName);}
+					console.log('\nAfter Correct Spelling Name namef:')
+					console.log('"'+namef+'"')
+					
+					if (namef in vectorsAll) {
+						var inputVec = vectorsAll[namef];
+						var scores = cosineSimilarity(inputVec);
+						var sortedDict = sortDict(scores);
+						document.getElementById('outputdiv').innerHTML = imageUrls(sortedDict);
 						document.getElementById('inputbox').value = name;
-								
-					}  else {alert('Celeb name not found!!!')}
+					} else {alert('name not found!!!')}
+				} else {
+					if (currUrl.indexOf('?') > -1 && currUrl.indexOf('search=') > -1 && currUrl.indexOf('star=true') <= -1) {
+						if (currUrl.indexOf('?') > -1 && currUrl.indexOf('search=') > -1 && name == '') {
+							var name = currUrl.split('search=')[1].split('&')[0].replace(/\+/g, ' ').trim();
+							var namef = findName(name, celebCollectionName);
+
+							if (currUrl.indexOf('?') > -1 && currUrl.indexOf('cat=') > -1) {
+								document.getElementById('sufix').value = currUrl.split('cat=')[1].split('&')[0];
+							}
+							
+							if (currUrl.indexOf('group=') > -1) {
+								document.getElementById('categoryid').value = currUrl.split('group=')[1].split('&')[0];
+							}
+
+
+							console.log('\nAfter Find Name namef:')
+							console.log('"'+namef+'"')
+							
+							if (namef == '') {var namef = findCorrectSpelling(name, collectionName);}
+							console.log('\nAfter Correct Spelling Name namef:')
+							console.log('"'+namef+'"')
+
+							document.getElementById('outputdiv').innerHTML = celebImageUrls(namef)
+							document.getElementById('inputbox').value = name;
+									
+						}  else {alert('Celeb name not found!!!')}
+					}
 				}
 			}
 		}
