@@ -36,7 +36,7 @@
 			text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 			display: inline-block;
 		}
-		img {
+		img, .icondiv {
 			box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 			border: 1px solid white;
 			margin: 0px;
@@ -45,6 +45,9 @@
 		img:hover {
 /*     			cursor:grab/pointer; */
     			cursor:pointer;
+		}
+		.icondiv:hover {
+			cursor:pointer;
 		}
 		.out {
 			/*overflow-y: scroll; */
@@ -58,7 +61,7 @@
 <body onload="processInput('')">
 <!-- 	<form> -->
 	<center>
-	<h2><a style="font-size: 200%;">🔥</a><u>Stars4U</u></h2>
+	<h2><a style="font-size: 200%;">🔥</a>Stars4U</h2>
 	<!-- <input type="search" id="inputbox" onchange="updateUrl()" style="width: 40%;"> -->
 	<!-- <input type="search" id="inputbox" style="width: 40%;"> -->
 	<input type="search" id="inputbox" style="width: 375px;" placeholder="Star/Celeb Name..."/>
@@ -367,7 +370,7 @@
 						var outstr = outstr + '<br><button style="background-color: transparent; border: 0;" onclick="window.open(\'https://mat6tube.com/video/'+k.replace(/ /g, "%20")+'%20\'+document.getElementById(\'sufix\').value.replace(/\\+/g, \'%20\')+\'?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en-US&_x_tr_pto=wapp\', target=\'_blank\')">';
 
 						// var outstr = outstr + '<img style="height: 50px; width: 50px; border-radius: 5px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIbE2VN8uWLckk2clXGSVhq-UwIbkwC45kDA&usqp=CAU" loading="lazy"/>'
-						var outstr = outstr + '<a style="font-size: 20px; color: red;font-family: san-serif;">M</a><a style="font-size: 20pxfont-family: san-serif;">6T</a>'
+						var outstr = outstr + '<div class="icondiv" style="height: 50px; width: 50px; border-radius: 5px; background-color: white"><b><a style="font-size: 20px; color: red;font-family: san-serif;">M</a><a style="font-size: 20px;font-family: san-serif;">6T</a></b></div>'
 
 						var outstr = outstr + '</button>'
 
@@ -377,7 +380,7 @@
 
 
 						// var outstr = outstr + '<br><button style="background-color: transparent; border: 0;" onclick="window.open(\'https://www-qorno-com.translate.goog/search/a/'+k.replace(/ /g, "%20")+'%20\'+document.getElementById(\'sufix\').value.replace(/\\+/g, \'%20\')+\'?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en-US&_x_tr_pto=wapp\', target=\'_blank\')">';
-						var outstr = outstr + '<br><button style="background-color: transparent; border: 0;" onclick="window.open(\'https://www.qorno.com/search/a/'+k.replace(/ /g, "%20")+'%20\'+document.getElementById(\'sufix\').value.replace(/\\+/g, \'%20\')+\'?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en-US&_x_tr_pto=wapp\', target=\'_blank\')">';
+						var outstr = outstr + '<button style="background-color: transparent; border: 0;" onclick="window.open(\'https://www.qorno.com/search/a/'+k.replace(/ /g, "%20")+'%20\'+document.getElementById(\'sufix\').value.replace(/\\+/g, \'%20\')+\'?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en-US&_x_tr_pto=wapp\', target=\'_blank\')">';
 
 						var outstr = outstr + '<img style="height: 50px; width: 50px; border-radius: 5px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIbE2VN8uWLckk2clXGSVhq-UwIbkwC45kDA&usqp=CAU" loading="lazy"/>'
 
