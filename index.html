@@ -2,7 +2,7 @@
 <!-- saved from url=(0014)about:internet -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔥</text></svg>">
-	<title>VoidStars4U v3</title>
+	<title>VoidStars4U</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<style type="text/css">
 		html, body {
@@ -58,7 +58,7 @@
 <body onload="processInput('')">
 <!-- 	<form> -->
 	<center>
-	<h2><a style="font-size: 200%;">🔥</a><u>Stars4U</u></h2>
+	<h2><a style="font-size: 200%;">🔥</a>Stars4U</h2>
 	<!-- <input type="search" id="inputbox" onchange="updateUrl()" style="width: 40%;"> -->
 	<!-- <input type="search" id="inputbox" style="width: 40%;"> -->
 	<input type="search" id="inputbox" style="width: 375px;" placeholder="Star/Celeb Name..."/>
@@ -588,6 +588,19 @@
 			}
 		}
 	}
+
+	document.getElementById('inputbox').addEventListener('keypress', (event)=>{
+
+			// event.keyCode or event.which  property will have the code of the pressed key
+			let keyCode = event.keyCode ? event.keyCode : event.which;
+
+			// 13 points the enter key
+			if(keyCode === 13) {
+				// call click function of the buttonn 
+				if (document.getElementById('categoryid').value == 'celebrity') {celebUpdateUrl();} else {if (document.getElementById('categoryid').value == 'pornstar') {updateUrl();} else {favUpdateUrl();}}
+			}
+		
+		});
 	</script>
 
 
