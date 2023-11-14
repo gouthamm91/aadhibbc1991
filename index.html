@@ -66,7 +66,7 @@
 <body onload="processInput('')">
 <!-- 	<form> -->
 	<center>
-	<h2><a style="font-size: 200%;">🔥</a><u>Stars4U</u></h2>
+	<h2><a style="font-size: 200%;">🔥</a>Stars4U</h2>
 	<!-- <input type="search" id="inputbox" onchange="updateUrl()" style="width: 40%;"> -->
 	<!-- <input type="search" id="inputbox" style="width: 40%;"> -->
 	<input type="search" id="inputbox" style="width: 375px;" placeholder="Star/Celeb Name..."/>
@@ -149,12 +149,13 @@
 	<!-- <input value="Search Stars" type="button" onclick="updateUrl()"/> -->
 	<!-- <input value="Search Celebs" type="button" onclick="celebUpdateUrl()"/> -->
 	<!-- <input value="My Favorites" type="button" onclick="loadAllButtons('inputbox', 'confdata', 'outputdiv')"/> -->
-	<select id="categoryid" onchange="if (this.value == 'celebrity') {celebUpdateUrl();} else {if (this.value == 'pornstar') {updateUrl();} else {favUpdateUrl();}}">
+	<select id="categoryid" onchange="if (this.value == 'celebrity') {celebUpdateUrl();}; if (this.value == 'pornstar') {updateUrl();}; if (this.value == 'random') {randomUpdateUrl();}; if (this.value == 'favorites') {favUpdateUrl();}">
 		<option value="celebrity">Celebrity</option>
 		<option value="pornstar">Pornstar</option>
 		<option value="favorites">Favorites</option>
+		<option value="random">Random</option>
 	</select>
-	<!-- <input type="button" value="Search" onclick="if (document.getElementById('categoryid').value == 'celebrity') {celebUpdateUrl();} else {if (document.getElementById('categoryid').value == 'pornstar') {updateUrl();} else {favUpdateUrl();}}"/> -->
+	<input type="button" value="Search" onclick="if (document.getElementById('categoryid').value == 'celebrity') {celebUpdateUrl();}; if (document.getElementById('categoryid').value == 'pornstar') {updateUrl();}; if (document.getElementById('categoryid').value == 'favorites') {favUpdateUrl();}; if (document.getElementById('categoryid').value == 'random') {randomUpdateUrl();}"/>
 	<textarea id="confdata" style="display: none;">
 		ariella ferrera mom under influence = https://noodlemagazine.com/watch/-209141133_456243753
 		ariella ferrera and missy stepmom and aunt threesome = https://mat6tube.com/watch/-211925793_456239374
@@ -227,7 +228,11 @@
 		function favUpdateUrl() {
 			window.location.href = '?search='+document.getElementById('inputbox').value.replace(/ /g, '+')+'&cat='+document.getElementById('sufix').value+'&group='+document.getElementById('categoryid').value;
 		}
-		
+
+		function randomUpdateUrl() {
+			window.location.href = '?search='+document.getElementById('inputbox').value.replace(/ /g, '+')+'&cat='+document.getElementById('sufix').value+'&group='+document.getElementById('categoryid').value+'&'+'random=true';
+		}
+
 		function findCorrectSpelling(givenWord, collection) {
 		  function calculateLevenshteinDistance(a, b) {
 		    const dp = Array(a.length + 1).fill(null).map(() => Array(b.length + 1).fill(0));
@@ -486,8 +491,8 @@
 			var currUrl = window.location.href;
 			console.log('currUrl: '+ currUrl)
 
-			if (currUrl.indexOf('?') > -1 && currUrl.indexOf('search=') > -1 && currUrl.indexOf('star=') <= -1) {
-				
+			if (currUrl.indexOf('?') > -1 && currUrl.indexOf('random=true') > -1 && ) {
+
 				var name = currUrl.split('search=')[1].split('&')[0].replace(/\+/g, ' ').trim();
 				document.getElementById('inputbox').value = name;
 
@@ -501,76 +506,121 @@
 					document.getElementById('categoryid').value = currUrl.split('group=')[1].split('&')[0];
 				}
 
-				loadAllButtons('inputbox', 'confdata', 'outputdiv');
+				redirectToRandomFavUrl();
 
 			} else {
 
-				if (currUrl.indexOf('?') > -1 && currUrl.indexOf('search=') > -1 && currUrl.indexOf('star=true') > -1) {
-					if (currUrl.indexOf('?') > -1 && currUrl.indexOf('search=') > -1 && name == '') {
-						var name = currUrl.split('search=')[1].split('&')[0].replace(/\+/g, ' ').trim();
-					}
+				if (currUrl.indexOf('?') > -1 && currUrl.indexOf('search=') > -1 && currUrl.indexOf('star=') <= -1) {
+					
+					var name = currUrl.split('search=')[1].split('&')[0].replace(/\+/g, ' ').trim();
+					document.getElementById('inputbox').value = name;
 
-					if (currUrl.indexOf('?') > -1 && currUrl.indexOf('cat=') > -1) {
+					if (currUrl.indexOf('cat=') > -1) {
 						document.getElementById('sufix').value = currUrl.split('cat=')[1].split('&')[0];
 					}
-					
-					document.getElementById('categoryid').value = 'pornstar';
+
+					document.getElementById('categoryid').value = 'favorites';
 					
 					if (currUrl.indexOf('group=') > -1) {
 						document.getElementById('categoryid').value = currUrl.split('group=')[1].split('&')[0];
 					}
 
-					scrollableDiv = document.getElementById('outputdiv');
-						scrollableDiv.scrollTop = 0;
-					var name = name.toLowerCase();
-					var namef = findName(name, collectionName);
-					// var namef = '';
-					console.log('\nAfter Find Name namef:')
-					console.log('"'+namef+'"')
-					
-					if (namef == '') {var namef = findCorrectSpelling(name, collectionName);}
-					console.log('\nAfter Correct Spelling Name namef:')
-					console.log('"'+namef+'"')
-					
-					if (namef in vectorsAll) {
-						var inputVec = vectorsAll[namef];
-						var scores = cosineSimilarity(inputVec);
-						var sortedDict = sortDict(scores);
-						document.getElementById('outputdiv').innerHTML = imageUrls(sortedDict);
-						document.getElementById('inputbox').value = name;
-					} else {alert('name not found!!!')}
+					loadAllButtons('inputbox', 'confdata', 'outputdiv');
+
 				} else {
-					if (currUrl.indexOf('?') > -1 && currUrl.indexOf('search=') > -1 && currUrl.indexOf('star=true') <= -1) {
+
+					if (currUrl.indexOf('?') > -1 && currUrl.indexOf('search=') > -1 && currUrl.indexOf('star=true') > -1) {
 						if (currUrl.indexOf('?') > -1 && currUrl.indexOf('search=') > -1 && name == '') {
 							var name = currUrl.split('search=')[1].split('&')[0].replace(/\+/g, ' ').trim();
-							var namef = findName(name, celebCollectionName);
+						}
 
-							if (currUrl.indexOf('?') > -1 && currUrl.indexOf('cat=') > -1) {
-								document.getElementById('sufix').value = currUrl.split('cat=')[1].split('&')[0];
-							}
-							
-							document.getElementById('categoryid').value = 'celebrity';
+						if (currUrl.indexOf('?') > -1 && currUrl.indexOf('cat=') > -1) {
+							document.getElementById('sufix').value = currUrl.split('cat=')[1].split('&')[0];
+						}
+						
+						document.getElementById('categoryid').value = 'pornstar';
+						
+						if (currUrl.indexOf('group=') > -1) {
+							document.getElementById('categoryid').value = currUrl.split('group=')[1].split('&')[0];
+						}
 
-							if (currUrl.indexOf('group=') > -1) {
-								document.getElementById('categoryid').value = currUrl.split('group=')[1].split('&')[0];
-							}
-
-
-							console.log('\nAfter Find Name namef:')
-							console.log('"'+namef+'"')
-							
-							if (namef == '') {var namef = findCorrectSpelling(name, collectionName);}
-							console.log('\nAfter Correct Spelling Name namef:')
-							console.log('"'+namef+'"')
-
-							document.getElementById('outputdiv').innerHTML = celebImageUrls(namef)
+						scrollableDiv = document.getElementById('outputdiv');
+							scrollableDiv.scrollTop = 0;
+						var name = name.toLowerCase();
+						var namef = findName(name, collectionName);
+						// var namef = '';
+						console.log('\nAfter Find Name namef:')
+						console.log('"'+namef+'"')
+						
+						if (namef == '') {var namef = findCorrectSpelling(name, collectionName);}
+						console.log('\nAfter Correct Spelling Name namef:')
+						console.log('"'+namef+'"')
+						
+						if (namef in vectorsAll) {
+							var inputVec = vectorsAll[namef];
+							var scores = cosineSimilarity(inputVec);
+							var sortedDict = sortDict(scores);
+							document.getElementById('outputdiv').innerHTML = imageUrls(sortedDict);
 							document.getElementById('inputbox').value = name;
-									
-						}  else {alert('Celeb name not found!!!')}
+						} else {alert('name not found!!!')}
+					} else {
+						if (currUrl.indexOf('?') > -1 && currUrl.indexOf('search=') > -1 && currUrl.indexOf('star=true') <= -1) {
+							if (currUrl.indexOf('?') > -1 && currUrl.indexOf('search=') > -1 && name == '') {
+								var name = currUrl.split('search=')[1].split('&')[0].replace(/\+/g, ' ').trim();
+								var namef = findName(name, celebCollectionName);
+
+								if (currUrl.indexOf('?') > -1 && currUrl.indexOf('cat=') > -1) {
+									document.getElementById('sufix').value = currUrl.split('cat=')[1].split('&')[0];
+								}
+								
+								document.getElementById('categoryid').value = 'celebrity';
+
+								if (currUrl.indexOf('group=') > -1) {
+									document.getElementById('categoryid').value = currUrl.split('group=')[1].split('&')[0];
+								}
+
+
+								console.log('\nAfter Find Name namef:')
+								console.log('"'+namef+'"')
+								
+								if (namef == '') {var namef = findCorrectSpelling(name, collectionName);}
+								console.log('\nAfter Correct Spelling Name namef:')
+								console.log('"'+namef+'"')
+
+								document.getElementById('outputdiv').innerHTML = celebImageUrls(namef)
+								document.getElementById('inputbox').value = name;
+										
+							}  else {alert('Celeb name not found!!!')}
+						}
 					}
 				}
 			}
 		}
+
+	function redirectToRandomFavUrl() {
+		// get fav data
+		var confDataStr = document.getElementById(confid).value.trim();
+		var urls = '';
+
+		// clean the data
+		for (let l=0; l<confDataStr.split('\n').length; l++) {
+			if (confDataStr.split('\n')[l].trim() != '') {var urls = urls + confDataStr.split('\n')[l].split('=')[confDataStr.split('\n')[l].split('=').length - 1].trim() + '\n';}
+		}
+		var urls = urls.trim();
+		console.log('urls:');
+		console.log(urls);
+
+		// random number between 0 to last index number of url
+		let i = Math.floor(Math.random() * (urls.split('\n').length - 1));
+		console.log('')
+		console.log('i: '+i)
+
+		// select the random url
+		var url = urls.split('\n')[i].trim();
+
+		// open the url
+		window.open(url, target='_blank');
+	}
 
 	function loadAllButtons(inpid, confid, outid) {
 		var inputStr = document.getElementById(inpid).value.trim();
