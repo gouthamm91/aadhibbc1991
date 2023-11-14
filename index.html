@@ -66,7 +66,7 @@
 <body onload="processInput('')">
 <!-- 	<form> -->
 	<center>
-	<h2><a style="font-size: 200%;">🔥</a><u>Stars4U</u></h2>
+	<h2><a style="font-size: 200%;">🔥</a>Stars4U</h2>
 	<!-- <input type="search" id="inputbox" onchange="updateUrl()" style="width: 40%;"> -->
 	<!-- <input type="search" id="inputbox" style="width: 40%;"> -->
 	<input type="search" id="inputbox" style="width: 375px;" placeholder="Star/Celeb Name..."/>
@@ -506,7 +506,7 @@
 					document.getElementById('categoryid').value = currUrl.split('group=')[1].split('&')[0];
 				}
 
-				redirectToRandomFavUrl();
+				redirectToRandomFavUrl('confdata');
 
 			} else {
 
@@ -597,7 +597,7 @@
 			}
 		}
 
-	function redirectToRandomFavUrl() {
+	function redirectToRandomFavUrl(confid) {
 		// get fav data
 		var confDataStr = document.getElementById(confid).value.trim();
 		var urls = '';
