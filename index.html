@@ -576,7 +576,7 @@
 
 			} else {
 
-				if (currUrl.indexOf('?') > -1 && currUrl.indexOf('search=') > -1 && currUrl.indexOf('star=') <= -1) {
+				if (currUrl.indexOf('?') > -1 && currUrl.indexOf('star=') <= -1) {
 					
 					var name = currUrl.split('search=')[1].split('&')[0].replace(/\+/g, ' ').trim();
 					document.getElementById('inputbox').value = name;
@@ -733,7 +733,7 @@
 						var imgsrc = 'https://st.depositphotos.com/1364916/2024/v/950/depositphotos_20247467-stock-illustration-sexy-girl-logo.jpg';
 					}
 
-					var outputbtns = outputbtns + '<button style="border: 0px solid grey; padding: 5px;" onclick="window.open(\''+url+'\')"><img style="width: 250px; height: auto; height: 370px;" src="'+imgsrc+'"><br>'+title+'</button>';
+					var outputbtns = outputbtns + '<button style="border: 0px solid grey; padding: 5px; width: 160px" onclick="window.open(\''+url+'\')"><img style="width: 250px; height: auto; height: 370px; width: 150px; height: auto;" src="'+imgsrc+'"><br>'+title+'</button>';
 				}
 			}
 		}
