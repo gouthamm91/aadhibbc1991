@@ -793,8 +793,10 @@
 				var flag = false;
 				var titleLowerCase = title.toLowerCase();
 				if (inputStrLowerCase != '') {
-					if (titleLowerCase.indexOf(inputStrLowerCase) > -1) {
-						var flag = true;
+					for (w=0; w<inputStrLowerCase.split(' ').length; w++) {
+						if (titleLowerCase.indexOf(inputStrLowerCase.split(' ')[w]) > -1) {
+							var flag = true;
+						}
 					}
 				} else {
 					var flag = true;
