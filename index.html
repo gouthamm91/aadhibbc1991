@@ -961,10 +961,10 @@
 		var outputElement = document.getElementById(outid);
 
 		outputElement.innerHTML = '';
+		var outputbtns = '';
 		for (b=0; b<cleanConfDataStr.split('\n\n').length; b++) {
 			var confDataArr = cleanConfDataStr.split('\n\n')[b].split('\n');
 			var newFlag = 1;
-			var outputbtns = '';
 			for (let i=0; i<confDataArr.length; i++) {
 				var currLine = confDataArr[i].trim();
 				if (currLine != '') {
