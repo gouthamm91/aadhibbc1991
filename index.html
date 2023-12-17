@@ -992,6 +992,9 @@
 					}
 
 					if (flag == true) {
+						
+						var outputbtns = outputbtns + '<button style="border:1px solid grey; padding: 3px; border-radius:10px; margin: 3px;" onclick="window.open(\''+url+'\')">'+title+'</button>';
+
 						if (starname.toLowerCase() != '') {
 							var name = starname.toLowerCase();
 							// var namef = findCorrectSpelling(name, collectionName);
@@ -1011,10 +1014,10 @@
 							}
 							// var outputbtns = outputbtns + '<div style="text-align: left; width: 260px; margin: 0px; padding: 0px; display: inline;"><img style="width: 250px; height: auto; height: 370px; display: inline;" src="'+imgsrc+'"></div><div style="display: inline; width: 500px; text-align: left;">';
 							// var outputbtns = outputbtns + '<tr><td><img style="width: 250px; height: auto; height: 370px; display: inline;" src="'+imgsrc+'"></td><td>';
-							var outputbtns = outputbtns + '<div style="width: 250px; display: inline-block;"><img style="width: 250px; height: auto; height: 370px; display: inline;" src="'+imgsrc+'">';
+							var outputbtns = outputbtns + '<img style="width: 250px; height: auto; height: 370px; display: inline;" src="'+imgsrc+'"/>';
 						}
 
-						var outputbtns = outputbtns + '<button style="border:1px solid grey; padding: 3px; border-radius:10px; margin: 3px;" onclick="window.open(\''+url+'\')">'+title+'</button>';
+						// var outputbtns = outputbtns + '<button style="border:1px solid grey; padding: 3px; border-radius:10px; margin: 3px;" onclick="window.open(\''+url+'\')">'+title+'</button>';
 					}
 				} else {
 					// var outputbtns = outputbtns + '<br>';
@@ -1022,7 +1025,7 @@
 			}
 			if (outputbtns != '') {
 				// var outputbtns = outputbtns + '</td></tr>';
-				var outputbtns = outputbtns + '</div>';
+				var outputbtns = '<div style="width: 250px; display: inline-block;">' + outputbtns + '</div>';
 			}
 		}
 
