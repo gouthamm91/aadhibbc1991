@@ -74,8 +74,8 @@
 <div style="display: none;">
 	This site is a Recomender System on Pornstars and Celebrities Based on your likes and favorites. Also lets you search for videos and pics on top site.
 </div>
-	<!-- <h2><a style="font-size: 200%;">🔥</a><u>Stars4U</u></h2> -->
-	<h2><a style="font-size: 200%;">🔥</a>Stars4U</h2>
+	<h2><a style="font-size: 200%;">🔥</a><u>Stars4U</u></h2>
+	<!-- <h2><a style="font-size: 200%;">🔥</a>Stars4U</h2> -->
 	<!-- <input type="search" id="inputbox" onchange="updateUrl()" style="width: 40%;"> -->
 	<!-- <input type="search" id="inputbox" style="width: 40%;"> -->
 	<input type="search" id="inputbox" style="width: 375px;" placeholder="Star/Celeb Name..."/>
@@ -1010,7 +1010,8 @@
 								var imgsrc = 'https://st.depositphotos.com/1364916/2024/v/950/depositphotos_20247467-stock-illustration-sexy-girl-logo.jpg';
 							}
 							// var outputbtns = outputbtns + '<div style="text-align: left; width: 260px; margin: 0px; padding: 0px; display: inline;"><img style="width: 250px; height: auto; height: 370px; display: inline;" src="'+imgsrc+'"></div><div style="display: inline; width: 500px; text-align: left;">';
-							var outputbtns = outputbtns + '<tr><td><img style="width: 250px; height: auto; height: 370px; display: inline;" src="'+imgsrc+'"></td><td>';
+							// var outputbtns = outputbtns + '<tr><td><img style="width: 250px; height: auto; height: 370px; display: inline;" src="'+imgsrc+'"></td><td>';
+							var outputbtns = outputbtns + '<div style="width: 250px; display: inline-block;"><img style="width: 250px; height: auto; height: 370px; display: inline;" src="'+imgsrc+'">';
 						}
 
 						var outputbtns = outputbtns + '<button style="border:1px solid grey; padding: 3px; border-radius:10px; margin: 3px;" onclick="window.open(\''+url+'\')">'+title+'</button>';
@@ -1020,11 +1021,13 @@
 				}
 			}
 			if (outputbtns != '') {
-				var outputbtns = outputbtns + '</td></tr>';
+				// var outputbtns = outputbtns + '</td></tr>';
+				var outputbtns = outputbtns + '</div>';
 			}
 		}
 
-		outputElement.innerHTML = '<center><table style="width: 80%;">'+outputbtns+'</table></center>';
+		// outputElement.innerHTML = '<center><table style="width: 80%;">'+outputbtns+'</table></center>';
+		outputElement.innerHTML = '<center>'+outputbtns+'</center>';
 	}
 
 	document.getElementById('inputbox').addEventListener('keypress', (event)=>{
