@@ -993,7 +993,7 @@
 
 					if (flag == true) {
 						
-						var outputbtns = outputbtns + '<button style="border:1px solid grey; padding: 3px; border-radius:10px; margin: 3px;" onclick="window.open(\''+url+'\')">'+title+'</button>';
+						// var outputbtns = outputbtns + '<button style="border:1px solid grey; padding: 3px; border-radius:10px; margin: 3px;" onclick="window.open(\''+url+'\')">'+title+'</button>';
 
 						if (starname.toLowerCase() != '') {
 							var name = starname.toLowerCase();
@@ -1013,8 +1013,8 @@
 								var imgsrc = 'https://st.depositphotos.com/1364916/2024/v/950/depositphotos_20247467-stock-illustration-sexy-girl-logo.jpg';
 							}
 							// var outputbtns = outputbtns + '<div style="text-align: left; width: 260px; margin: 0px; padding: 0px; display: inline;"><img style="width: 250px; height: auto; height: 370px; display: inline;" src="'+imgsrc+'"></div><div style="display: inline; width: 500px; text-align: left;">';
-							// var outputbtns = outputbtns + '<tr><td><img style="width: 250px; height: auto; height: 370px; display: inline;" src="'+imgsrc+'"></td><td>';
-							var outputbtns = outputbtns + '<img style="width: 250px; height: auto; height: 370px; display: inline;" src="'+imgsrc+'"/>';
+							var outputbtns = outputbtns + '<tr><td><img style="width: 250px; height: auto; height: 370px; display: inline;" src="'+imgsrc+'"></td><td>';
+							// var outputbtns = outputbtns + '<img style="width: 250px; height: auto; height: 370px; display: inline;" src="'+imgsrc+'"/>';
 						}
 
 						// var outputbtns = outputbtns + '<button style="border:1px solid grey; padding: 3px; border-radius:10px; margin: 3px;" onclick="window.open(\''+url+'\')">'+title+'</button>';
@@ -1024,8 +1024,8 @@
 				}
 			}
 			if (outputbtns != '') {
-				// var outputbtns = outputbtns + '</td></tr>';
-				var outputbtns = '<div style="width: 250px; display: inline-block;">' + outputbtns + '</div>';
+				var outputbtns = outputbtns + '</td></tr>';
+				// var outputbtns = '<div style="width: 250px; display: inline-block;">' + outputbtns + '</div>';
 			}
 		}
 
