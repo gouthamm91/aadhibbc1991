@@ -75,8 +75,8 @@
 <div style="display: none;">
 	This site is a Recomender System on Pornstars and Celebrities Based on your likes and favorites. Also lets you search for videos and pics on top site.
 </div>
-	<!-- <h2><a style="font-size: 200%;">🔥</a><u>Stars4U</u></h2> -->
-	<h2><a style="font-size: 200%;">🔥</a>Stars4U</h2>
+	<h2><a style="font-size: 200%;">🔥</a><u>Stars4U</u></h2>
+	<!-- <h2><a style="font-size: 200%;">🔥</a>Stars4U</h2> -->
 	<!-- <input type="search" id="inputbox" onchange="updateUrl()" style="width: 40%;"> -->
 	<!-- <input type="search" id="inputbox" style="width: 40%;"> -->
 	<input type="search" id="inputbox" style="width: 375px;" placeholder="Star/Celeb Name..."/>
@@ -547,11 +547,13 @@
 	<script type="text/javascript">
 
 		function updateUrl() {
-			window.location.href = '?search='+document.getElementById('inputbox').value.replace(/ /g, '+')+'&cat='+document.getElementById('sufix').value+'&star=true'+'&group='+document.getElementById('categoryid').value;
+			// window.location.href = '?search='+document.getElementById('inputbox').value.replace(/ /g, '+')+'&cat='+document.getElementById('sufix').value+'&star=true'+'&group='+document.getElementById('categoryid').value;
+			window.location.href = '?search='+document.getElementById('inputbox').value.replace(/ /g, '+')+'&cat='+document.getElementById('sufix').value+'&group='+document.getElementById('categoryid').value;
 		}
 		
 		function celebUpdateUrl() {
-			window.location.href = '?search='+document.getElementById('inputbox').value.replace(/ /g, '+')+'&cat='+document.getElementById('sufix').value+'&star=false'+'&group='+document.getElementById('categoryid').value;
+			// window.location.href = '?search='+document.getElementById('inputbox').value.replace(/ /g, '+')+'&cat='+document.getElementById('sufix').value+'&star=false'+'&group='+document.getElementById('categoryid').value;
+			window.location.href = '?search='+document.getElementById('inputbox').value.replace(/ /g, '+')+'&cat='+document.getElementById('sufix').value+'&group='+document.getElementById('categoryid').value;
 		}
 		
 		function favUpdateUrl() {
@@ -559,7 +561,7 @@
 		}
 
 		function randomUpdateUrl() {
-			window.location.href = '?search='+document.getElementById('inputbox').value.replace(/ /g, '+')+'&cat='+document.getElementById('sufix').value+'&group='+document.getElementById('categoryid').value+'&'+'random=true';
+			window.location.href = '?search='+document.getElementById('inputbox').value.replace(/ /g, '+')+'&cat='+document.getElementById('sufix').value+'&group='+document.getElementById('categoryid').value;
 		}
 
 		function findCorrectSpelling(givenWord, collection) {
