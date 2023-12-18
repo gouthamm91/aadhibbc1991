@@ -166,13 +166,13 @@
 	<!-- <input value="Search Stars" type="button" onclick="updateUrl()"/> -->
 	<!-- <input value="Search Celebs" type="button" onclick="celebUpdateUrl()"/> -->
 	<!-- <input value="My Favorites" type="button" onclick="loadAllButtons('inputbox', 'confdata', 'outputdiv')"/> -->
-	<select id="categoryid" onchange="if (this.value == 'celebrity') {celebUpdateUrl();}; if (this.value == 'pornstar') {updateUrl();}; if (this.value == 'random') {randomUpdateUrl();}; if (this.value == 'favorites') {favUpdateUrl();}">
+	<select id="categoryid" onchange="if (this.value == 'celebrity') {celebUpdateUrl();}; if (this.value == 'pornstar') {updateUrl();}; if (this.value == 'random') {randomUpdateUrl();}; if (this.value == 'favorite') {favUpdateUrl();}">
 		<option value="celebrity">Celebrity</option>
 		<option value="pornstar">Pornstar</option>
-		<option value="favorites">Favorites</option>
+		<option value="favorite">Favorite</option>
 		<option value="random">Random</option>
 	</select>
-	<input type="button" value="Search" onclick="if (document.getElementById('categoryid').value == 'celebrity') {celebUpdateUrl();}; if (document.getElementById('categoryid').value == 'pornstar') {updateUrl();}; if (document.getElementById('categoryid').value == 'favorites') {favUpdateUrl();}; if (document.getElementById('categoryid').value == 'random') {randomUpdateUrl();}"/>
+	<input type="button" value="Search" onclick="if (document.getElementById('categoryid').value == 'celebrity') {celebUpdateUrl();}; if (document.getElementById('categoryid').value == 'pornstar') {updateUrl();}; if (document.getElementById('categoryid').value == 'favorite') {favUpdateUrl();}; if (document.getElementById('categoryid').value == 'random') {randomUpdateUrl();}"/>
 	<textarea id="confdata" style="display: none;">
 		alexis fawx mom family threesome = https://mat6tube.com/watch/-104847595_456239194
 		alexis fawx mom accidental creampie = https://mat6tube.com/watch/-133878684_456239296
@@ -820,16 +820,20 @@
 			var currUrl = window.location.href;
 			console.log('currUrl: '+ currUrl)
 
-			if (currUrl.indexOf('?') > -1 && currUrl.indexOf('random=true') > -1) {
+			// if (currUrl.indexOf('?') > -1 && currUrl.indexOf('random=true') > -1) {
+			if (currUrl.indexOf('?') > -1 && currUrl.indexOf('group=random') > -1) {
 
-				var name = currUrl.split('search=')[1].split('&')[0].replace(/\+/g, ' ').trim();
-				document.getElementById('inputbox').value = name;
+				if (currUrl.indexOf('?') > -1 && currUrl.indexOf('search=') > -1 && name == '') {
+					var name = currUrl.split('search=')[1].split('&')[0].replace(/\+/g, ' ').trim();
+					document.getElementById('inputbox').value = name;
+				}
 
 				if (currUrl.indexOf('cat=') > -1) {
 					document.getElementById('sufix').value = currUrl.split('cat=')[1].split('&')[0];
 				}
 
-				document.getElementById('categoryid').value = 'favorites';
+				// document.getElementById('categoryid').value = 'favorites';
+				document.getElementById('categoryid').value = 'random';
 				
 				if (currUrl.indexOf('group=') > -1) {
 					document.getElementById('categoryid').value = currUrl.split('group=')[1].split('&')[0];
@@ -839,16 +843,20 @@
 
 			} else {
 
-				if (currUrl.indexOf('?') > -1 && currUrl.indexOf('star=') <= -1) {
+				// if (currUrl.indexOf('?') > -1 && currUrl.indexOf('star=') <= -1) {
+				if (currUrl.indexOf('?') > -1 && currUrl.indexOf('group=favorite') <= -1) {
 					
-					var name = currUrl.split('search=')[1].split('&')[0].replace(/\+/g, ' ').trim();
-					document.getElementById('inputbox').value = name;
+					if (currUrl.indexOf('?') > -1 && currUrl.indexOf('search=') > -1 && name == '') {
+						var name = currUrl.split('search=')[1].split('&')[0].replace(/\+/g, ' ').trim();
+						document.getElementById('inputbox').value = name;
+					}
 
 					if (currUrl.indexOf('cat=') > -1) {
 						document.getElementById('sufix').value = currUrl.split('cat=')[1].split('&')[0];
 					}
 
-					document.getElementById('categoryid').value = 'favorites';
+					// document.getElementById('categoryid').value = 'favorites';
+					document.getElementById('categoryid').value = 'favorite';
 					
 					if (currUrl.indexOf('group=') > -1) {
 						document.getElementById('categoryid').value = currUrl.split('group=')[1].split('&')[0];
@@ -858,7 +866,8 @@
 
 				} else {
 
-					if (currUrl.indexOf('?') > -1 && currUrl.indexOf('search=') > -1 && currUrl.indexOf('star=true') > -1) {
+					// if (currUrl.indexOf('?') > -1 && currUrl.indexOf('search=') > -1 && currUrl.indexOf('star=true') > -1) {
+					if (currUrl.indexOf('?') > -1 && currUrl.indexOf('group=pornstar') > -1) {
 						if (currUrl.indexOf('?') > -1 && currUrl.indexOf('search=') > -1 && name == '') {
 							var name = currUrl.split('search=')[1].split('&')[0].replace(/\+/g, ' ').trim();
 						}
@@ -893,33 +902,38 @@
 							document.getElementById('inputbox').value = name;
 						} else {alert('name not found!!!')}
 					} else {
-						if (currUrl.indexOf('?') > -1 && currUrl.indexOf('search=') > -1 && currUrl.indexOf('star=true') <= -1) {
+						// if (currUrl.indexOf('?') > -1 && currUrl.indexOf('search=') > -1 && currUrl.indexOf('star=true') <= -1) {
+						if (currUrl.indexOf('?') > -1 && currUrl.indexOf('group=celebrity') > -1) {
 							if (currUrl.indexOf('?') > -1 && currUrl.indexOf('search=') > -1 && name == '') {
 								var name = currUrl.split('search=')[1].split('&')[0].replace(/\+/g, ' ').trim();
-								var namef = findName(name, celebCollectionName);
+							} else {
+								var name = '';
+							}
 
-								if (currUrl.indexOf('?') > -1 && currUrl.indexOf('cat=') > -1) {
-									document.getElementById('sufix').value = currUrl.split('cat=')[1].split('&')[0];
-								}
-								
-								document.getElementById('categoryid').value = 'celebrity';
+							var namef = findName(name, celebCollectionName);
 
-								if (currUrl.indexOf('group=') > -1) {
-									document.getElementById('categoryid').value = currUrl.split('group=')[1].split('&')[0];
-								}
+							if (currUrl.indexOf('?') > -1 && currUrl.indexOf('cat=') > -1) {
+								document.getElementById('sufix').value = currUrl.split('cat=')[1].split('&')[0];
+							}
+							
+							document.getElementById('categoryid').value = 'celebrity';
+
+							if (currUrl.indexOf('group=') > -1) {
+								document.getElementById('categoryid').value = currUrl.split('group=')[1].split('&')[0];
+							}
 
 
-								console.log('\nAfter Find Name namef:')
-								console.log('"'+namef+'"')
-								
-								if (namef == '') {var namef = findCorrectSpelling(name, collectionName);}
-								console.log('\nAfter Correct Spelling Name namef:')
-								console.log('"'+namef+'"')
+							console.log('\nAfter Find Name namef:')
+							console.log('"'+namef+'"')
+							
+							if (namef == '') {var namef = findCorrectSpelling(name, collectionName);}
+							console.log('\nAfter Correct Spelling Name namef:')
+							console.log('"'+namef+'"')
 
-								document.getElementById('outputdiv').innerHTML = celebImageUrls(namef)
-								document.getElementById('inputbox').value = name;
-										
-							}  else {alert('Celeb name not found!!!')}
+							document.getElementById('outputdiv').innerHTML = celebImageUrls(namef)
+							document.getElementById('inputbox').value = name;
+									
+							// }  else {alert('Celeb name not found!!!')}
 						}
 					}
 				}
