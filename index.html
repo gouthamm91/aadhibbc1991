@@ -75,8 +75,8 @@
 <div style="display: none;">
 	This site is a Recomender System on Pornstars and Celebrities Based on your likes and favorites. Also lets you search for videos and pics on top site.
 </div>
-	<h2><a style="font-size: 200%;">🔥</a><u>Stars4U</u></h2>
-	<!-- <h2><a style="font-size: 200%;">🔥</a>Stars4U</h2> -->
+	<!-- <h2><a style="font-size: 200%;">🔥</a><u>Stars4U</u></h2> -->
+	<h2><a style="font-size: 200%;">🔥</a>Stars4U</h2>
 	<!-- <input type="search" id="inputbox" onchange="updateUrl()" style="width: 40%;"> -->
 	<!-- <input type="search" id="inputbox" style="width: 40%;"> -->
 	<input type="search" id="inputbox" style="width: 375px;" placeholder="Star/Celeb Name..."/>
@@ -836,10 +836,55 @@
 			}
 			return finalname
 		}
+
+		function urlUnblock(a) {
+			var hostName = a.split('://')[a.split('://').length - 1];
+			var hostName = hostName.split('www.')[hostName.split('www.').length - 1];
+			
+			var urlSufix = '';
+			if (hostName.split('/').length > 1) {
+				for (s=1; s<hostName.split('/').length; s++) {
+					var urlSufix = urlSufix + '/' + hostName.split('/')[s];
+				}
+			}
+
+			var hostName = hostName.split('/')[0];
+
+			if (hostName.indexOf('xvideos') > -1) {
+				window.location.href = 'https://xnxx.health'+urlSufix;
+			}
+			if (hostName.indexOf('spankbang') > -1) {
+				window.location.href = 'https://spankbang.party'+urlSufix;
+			}
+			if (hostName.indexOf('beeg') > -1) {
+				window.location.href = 'https://beeg.onl'+urlSufix;
+			}
+			if (hostName.indexOf('okxxx') > -1) {
+				window.location.href = 'https://okxxx1.com'+urlSufix;
+			}
+			if (hostName.indexOf('xhamster') > -1) {
+				window.location.href = 'https://xhamster42.desi'+urlSufix;
+			}
+			if (hostName.indexOf('pornhub') > -1) {
+				window.location.href = 'https://pornhub.org'+urlSufix;
+			}
+			if (hostName.indexOf('xhamster') > -1) {
+				window.location.href = 'https://xhamster42.desi'+urlSufix;
+			}
+			
+		}
 		
 		function processInput(name) {
 			var currUrl = window.location.href;
 			console.log('currUrl: '+ currUrl)
+
+			if (currUrl.indexOf('?') > -1 && currUrl.indexOf('url=') > -1) {
+				
+				var url = currUrl.split('url=')[1].split('&')[0].replace(/\+/g, ' ').trim();
+				// document.getElementById('inputbox').value = name;
+			
+				urlUnblock(url);
+			}
 
 			// if (currUrl.indexOf('?') > -1 && currUrl.indexOf('random=true') > -1) {
 			if (currUrl.indexOf('?') > -1 && currUrl.indexOf('group=random') > -1) {
