@@ -1064,6 +1064,12 @@
 									var name = '';
 								}
 
+								// var namef = findName(name, celebCollectionName);
+								// if (namef == '') {var namef = findCorrectSpelling(name, collectionName);}
+								var namef = name;
+
+								document.getElementById('inputbox').value = namef;
+
 								if (currUrl.indexOf('?') > -1 && currUrl.indexOf('cat=') > -1) {
 									document.getElementById('sufix').value = currUrl.split('cat=')[1].split('&')[0];
 								}
