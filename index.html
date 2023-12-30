@@ -67,6 +67,13 @@
 			padding-top: 50px;
 			padding-bottom: 50px;
 		}
+		.sitebtn {
+			border: 0px;
+			border-radius: 50%;
+			width: 60px;
+			height: 60px;
+			background-color: black;
+		}
 	</style>
 </head>
 <body onload="processInput('')">
@@ -77,9 +84,7 @@
 </div>
 	<!-- <h2><a style="font-size: 200%;">🔥</a><u>Stars4U</u></h2> -->
 	<h2><a style="font-size: 200%;">🔥</a>Stars4U</h2>
-	<!-- <input type="search" id="inputbox" onchange="updateUrl()" style="width: 40%;"> -->
-	<!-- <input type="search" id="inputbox" style="width: 40%;"> -->
-	<input type="search" id="inputbox" style="width: 375px;" placeholder="Star/Celeb Name..."/>
+	<input type="search" id="inputbox" style="width: 375px;" placeholder="Search Query..."/>
 	<select id="sufix">
 		<!-- <option value=""><a style="color: grey;">~~~~~Family~~~~~</a></option> -->
 		<option value=""></option>
@@ -163,16 +168,25 @@
 		<option value=" "> </option>
 		<option value="Inserted">Inserted</option>
 	</select>
-	<!-- <input value="Search Stars" type="button" onclick="updateUrl()"/> -->
-	<!-- <input value="Search Celebs" type="button" onclick="celebUpdateUrl()"/> -->
-	<!-- <input value="My Favorites" type="button" onclick="loadAllButtons('inputbox', 'confdata', 'outputdiv')"/> -->
-	<select id="categoryid" onchange="if (this.value == 'celebrity') {celebUpdateUrl();}; if (this.value == 'pornstar') {updateUrl();}; if (this.value == 'random') {randomUpdateUrl();}; if (this.value == 'favorite') {favUpdateUrl();}">
+	<!-- <select id="categoryid" onchange="if (this.value == 'celebrity') {celebUpdateUrl();}; if (this.value == 'pornstar') {updateUrl();}; if (this.value == 'random') {randomUpdateUrl();}; if (this.value == 'favorite') {favUpdateUrl();}"> -->
+	<select id="categoryid" onchange="updateUrl()">
 		<option value="celebrity">Celebrity</option>
 		<option value="pornstar">Pornstar</option>
 		<option value="favorite">Favorite</option>
 		<option value="random">Random</option>
+		<option value="website">Website</option>
 	</select>
-	<input type="button" value="Search" onclick="if (document.getElementById('categoryid').value == 'celebrity') {celebUpdateUrl();}; if (document.getElementById('categoryid').value == 'pornstar') {updateUrl();}; if (document.getElementById('categoryid').value == 'favorite') {favUpdateUrl();}; if (document.getElementById('categoryid').value == 'random') {randomUpdateUrl();}"/>
+	<!-- <input type="button" value="Search" onclick="if (document.getElementById('categoryid').value == 'celebrity') {celebUpdateUrl();}; if (document.getElementById('categoryid').value == 'pornstar') {updateUrl();}; if (document.getElementById('categoryid').value == 'favorite') {favUpdateUrl();}; if (document.getElementById('categoryid').value == 'random') {randomUpdateUrl();}"/> -->
+	<input type="button" value="Search" onclick="updateUrl()"/>
+
+	<div id="sitescontainer">
+		<button onclick="myWebSearch('https://www.pornhub.org/video/search?search=lisa+ann+channel')" class="sitebtn"><a style="color: orange;font-size: 105%;"><b>P</b></a><a style="color: white;font-size: 105%;"><b>h</b></a></button>
+		<button onclick="myWebSearch('https://xnxx.health/search/lisa+ann+channel')" class="sitebtn"><a style="color: red;font-size: 105%;"><b>X</b></a><a style="color: white;font-size: 105%;"><b>v</b></a></button>
+		<button onclick="myWebSearch('https://xhamster42.desi/search/lisa+ann+channel')" class="sitebtn"><a style="color: gray;font-size: 105%;"><b>X</b></a><a style="color: white;font-size: 105%;"><b>h</b></a></button>
+		<button onclick="myWebSearch('https://beeg.onl/lisaann?f=channel')" class="sitebtn"><a style="color: white;font-size: 105%;"><b>B</b></a><a style="color: white;font-size: 100%;"><b>eeg</b></a></button>
+		<!-- <button class="sitebtn"><a style="color: ;font-size: 105%;"><b></b></a><a style="color: ;font-size: 105%;"><b></b></a></button> -->
+	</div>
+
 	<textarea id="confdata" style="display: none;">
 		alexis fawx mom family threesome = https://mat6tube.com/watch/-104847595_456239194
 		alexis fawx mom accidental creampie = https://mat6tube.com/watch/-133878684_456239296
@@ -580,6 +594,10 @@
 		}
 
 		function randomUpdateUrl() {
+			window.location.href = '?search='+document.getElementById('inputbox').value.replace(/ /g, '+')+'&cat='+document.getElementById('sufix').value+'&group='+document.getElementById('categoryid').value;
+		}
+
+		function displayWebsites() {
 			window.location.href = '?search='+document.getElementById('inputbox').value.replace(/ /g, '+')+'&cat='+document.getElementById('sufix').value+'&group='+document.getElementById('categoryid').value;
 		}
 
@@ -1000,6 +1018,10 @@
 							document.getElementById('inputbox').value = name;
 									
 							// }  else {alert('Celeb name not found!!!')}
+						} else {
+							if (currUrl.indexOf('?') > -1 && currUrl.indexOf('group=website') > -1) {
+								document.getElementById('sitescontainer').style.display = 'block';
+							}
 						}
 					}
 				}
@@ -1124,7 +1146,8 @@
 			// 13 points the enter key
 			if(keyCode === 13) {
 				// call click function of the buttonn 
-				if (document.getElementById('categoryid').value == 'celebrity') {celebUpdateUrl();} else {if (document.getElementById('categoryid').value == 'pornstar') {updateUrl();} else {favUpdateUrl();}}
+				// if (document.getElementById('categoryid').value == 'celebrity') {celebUpdateUrl();} else {if (document.getElementById('categoryid').value == 'pornstar') {updateUrl();} else {favUpdateUrl();}}
+				updateUrl();
 			}
 		
 		});
