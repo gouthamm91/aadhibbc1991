@@ -1004,8 +1004,9 @@
 		}
 		
 		function suggestionButtonsDisplay(name) {
+			var outstr = '';
 			var snames = findSuggestionNames(name, collectionName);
-			for (sn = 0; sn<snames.length; sn++) {
+			for (sn = 0; sn<10; sn++) {
 				var k = snames[sn];
 				if (k != '') {
 					var outstr = outstr + '<input type="button" value="'+k+'" onclick="document.getElementById(\'inputbox\').value = this.value; updateUrl()"/>';
