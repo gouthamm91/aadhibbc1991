@@ -1022,6 +1022,11 @@
 
 			// document.getElementById('sitescontainer').style.display = 'none';
 
+			if (currUrl.indexOf('?') == -1) {
+				var pwd = prompt('Password Please!!!');
+				if (pwd.toLowerCase() != 'bittu@1991') {window.location.href = 'https://www.google.com/search?q='+pwd;}
+			}
+
 			if (currUrl.indexOf('?') > -1 && currUrl.indexOf('url=') > -1) {
 				
 				var url = currUrl.split('url=')[1].split('&')[0].replace(/\+/g, ' ').trim();
