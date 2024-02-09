@@ -1025,6 +1025,7 @@
 			if (currUrl.indexOf('?') == -1) {
 				var pwd = prompt('Password Please!!!');
 				console.log('pwd: '+pwd);
+				if (pwd == null) {window.location.href = 'https://www.google.com/search?q='+pwd;}
 				if (pwd.toLowerCase() != 'bittu@1991') {window.location.href = 'https://www.google.com/search?q='+pwd;}
 			}
 
