@@ -2923,7 +2923,7 @@
 					var titleLowerCase = ' ' + title.toLowerCase() + ' ';
 					if (inputStrLowerCase != '') {
 						for (w=0; w<inputStrLowerCase.split(' ').length; w++) {
-							if (titleLowerCase.indexOf(' ' + inputStrLowerCase.split(' ')[w] + ' ') > -1) {
+							if (titleLowerCase.indexOf(' ' + inputStrLowerCase.split(' ')[w] + ' ') > -1 && titleLowerCase.split(':')[1].indexOf(titleLowerCase.split(':')[0].trim()) > -1) {
 								var flag = true;
 							}
 						}
