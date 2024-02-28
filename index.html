@@ -2865,7 +2865,24 @@
 
 	function redirectToRandomFavUrl(confid) {
 		// get fav data
-		var confDataStr = document.getElementById(confid).value.trim();
+		// var confDataStr = document.getElementById(confid).value.trim();
+		var confDataStrTmp = document.getElementById(confid).value.trim();
+
+		for (l=0; l<confDataStrTmp.split('\n').length; l++) {
+			// for every line in the data trim the line
+			var confDataStrTmpCur = confDataStrTmp.split('\n')[l];
+			var confDataStrTmpCurr = confDataStrTmp.split('\n')[l].trim();
+			if (confDataStrTmpCurr != '') {
+				if (confDataStrTmpCurr.split(':')[1].toLowerCase().indexOf(confDataStrTmpCurr.split(':')[0].toLowerCase()) > -1) {
+					var confDataStr = confDataStr + '\n' + confDataStrTmpCur;
+				}
+			} else {
+				var confDataStr = confDataStr + '\n';
+			}
+		}
+
+		var confDataStr = confDataStr.trim();
+
 		var urls = '';
 
 		// clean the data
