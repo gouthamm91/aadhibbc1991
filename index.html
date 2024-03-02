@@ -91,6 +91,21 @@
 			font-size: 100%;
 			width: 45px;
 		}
+		
+		#pattern-lock {
+			display: grid;
+			grid-template-columns: repeat(3, 100px);
+			gap: 10px;
+		}
+
+		.pattern-node {
+			width: 100px;
+			height: 100px;
+			border: 2px solid #333;
+			box-sizing: border-box;
+			cursor: pointer;
+			transition: background-color 0.3s;
+		}
 	</style>
 </head>
 <body onload="processInput('')">
@@ -99,6 +114,65 @@
 <div style="display: none;">
 	This site is a Recomender System on Pornstars and Celebrities Based on your likes and favorites. Also lets you search for videos and pics on top site.
 </div>
+<div id="pattern-lock-container">
+	<input id="pwd"/>
+	<div id="pattern-lock"></div>
+</div>
+<script type="text/javascript">
+
+document.addEventListener('DOMContentLoaded', function () {
+  const patternLockContainer = document.getElementById('pattern-lock');
+  let selectedNodes = [];
+
+  // Create pattern nodes
+  for (let i = 0; i < 9; i++) {
+    const node = document.createElement('div');
+    node.className = 'pattern-node';
+    node.addEventListener('click', () => handleNodeClick(i + 1));
+    patternLockContainer.appendChild(node);
+  }
+
+  // Handle node click
+  function handleNodeClick(nodeValue) {
+    selectedNodes.push(nodeValue);
+	document.getElementById('pwd').value = document.getElementById('pwd').value + nodeValue;
+    updateNodeStyles();
+
+    // Check pattern after 3 nodes are selected (you can adjust this as needed)
+    if (selectedNodes.length === 5) {
+      checkPattern();
+    }
+  }
+
+  // Update node styles based on selection
+  function updateNodeStyles() {
+    const nodes = document.querySelectorAll('.pattern-node');
+    nodes.forEach((node, index) => {
+      if (selectedNodes.includes(index + 1)) {
+        node.style.backgroundColor = '#3498db'; // Change background color for selected nodes
+      } else {
+        node.style.backgroundColor = 'transparent';
+      }
+    });
+  }
+
+  // Check the entered pattern (you can customize this logic)
+  function checkPattern() {
+    const correctPattern = [9, 6, 3, 2, 1]; // Example correct pattern
+    if (JSON.stringify(selectedNodes) === JSON.stringify(correctPattern)) {
+      alert('Pattern is correct!');
+    } else {
+      alert('Pattern is incorrect. Try again.');
+    }
+
+    // Reset selected nodes after checking
+    selectedNodes = [];
+    updateNodeStyles();
+  }
+});
+</script>
+
+<div id="mainBody" style="display: none;">
 	<!-- <h2><a style="font-size: 200%;">🔥</a><u>Stars4U</u></h2> -->
 	<h2><a style="font-size: 200%;">🔥</a>Stars4U</h2>
 	<input type="search" id="inputbox" style="width: 375px;" placeholder="Search Query..."/>
@@ -3072,6 +3146,6 @@
 		
 		});
 	</script>
-
+</div>
 
 </body></html>
