@@ -126,7 +126,7 @@
 
   // Create 9 dots for the pattern lock
   for (let i = 0; i < 9; i++) {
-    const dot = document.createElement('div');
+    var dot = document.createElement('div');
     dot.className = 'dot';
     dot.addEventListener('click', () => onDotClick(i + 1));
     document.getElementById('pattern-lock').appendChild(dot);
