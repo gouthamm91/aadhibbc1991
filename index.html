@@ -126,59 +126,6 @@
 	This site is a Recomender System on Pornstars and Celebrities Based on your likes and favorites. Also lets you search for videos and pics on top site.
 </div>
 
-<div id="pattern-lock-container">
-    <div id="pattern-draw"></div>
-</div>
-
-<script type="text/javascript">
-document.addEventListener('DOMContentLoaded', function () {
-  const patternDraw = document.getElementById('pattern-draw');
-  let pattern = [];
-
-  function handleDotClick(dot) {
-    return function () {
-      pattern.push(dot);
-      updatePattern();
-    };
-  }
-
-  function updatePattern() {
-    patternDraw.innerHTML = '';
-    pattern.forEach(dot => {
-      patternDraw.appendChild(dot);
-    });
-  }
-
-  function clearPattern() {
-    pattern = [];
-    updatePattern();
-  }
-
-  // Create dots
-  for (let i = 0; i < 9; i++) {
-    const dot = document.createElement('div');
-    dot.className = 'pattern-dot';
-    dot.addEventListener('click', handleDotClick(dot));
-    patternDraw.appendChild(dot);
-  }
-
-  // Clear pattern on right-click
-  document.addEventListener('contextmenu', function (event) {
-    event.preventDefault();
-    clearPattern();
-  });
-
-  // Output pattern on mouseup
-  document.addEventListener('mouseup', function () {
-    if (pattern.length > 0) {
-      console.log('Pattern:', pattern.map(dot => patternDraw.children.indexOf(dot) + 1).join(''));
-      clearPattern();
-    }
-  });
-});
-
-</script>
-
 <div id="mainBody" style="display: none;">
 	<!-- <h2><a style="font-size: 200%;">🔥</a><u>Stars4U</u></h2> -->
 	<h2><a style="font-size: 200%;">🔥</a>Stars4U</h2>
@@ -2847,6 +2794,12 @@ document.addEventListener('DOMContentLoaded', function () {
 			// 	if (pwd == null) {window.location.href = 'https://www.google.com/search?q='+pwd;}
 			// 	if (pwd.toLowerCase() != 'bittu@1991') {window.location.href = 'https://www.google.com/search?q='+pwd;}
 			// }
+
+			if (currUrl.indexOf('?') <= -1) {
+				return
+			} else {
+				document.getElementById('mainBody').style.display = 'block';
+			}
 
 			if (currUrl.indexOf('?') > -1 && currUrl.indexOf('url=') > -1) {
 				
