@@ -92,20 +92,21 @@
 			width: 45px;
 		}
 		
-		#pattern-lock {
-			display: grid;
-			grid-template-columns: repeat(3, 100px);
-			gap: 10px;
-		}
+	#pattern-lock {
+      position: relative;
+      width: 300px;
+      height: 300px;
+    }
 
-		.pattern-node {
-			width: 100px;
-			height: 100px;
-			border: 2px solid #333;
-			box-sizing: border-box;
-			cursor: pointer;
-			transition: background-color 0.3s;
-		}
+    .dot {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background-color: #3498db;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
 	</style>
 </head>
 <body onload="processInput('')">
@@ -114,62 +115,52 @@
 <div style="display: none;">
 	This site is a Recomender System on Pornstars and Celebrities Based on your likes and favorites. Also lets you search for videos and pics on top site.
 </div>
-<div id="pattern-lock-container">
-	<input id="pwd"/>
+<!-- <div id="pattern-lock-container"> -->
+	<!-- <input id="pwd"/> -->
 	<div id="pattern-lock"></div>
-</div>
+<!-- </div> -->
 <script type="text/javascript">
+  // Store the pattern and the user input
+  let pattern = [];
+  let userInput = [];
 
-document.addEventListener('DOMContentLoaded', function () {
-  const patternLockContainer = document.getElementById('pattern-lock');
-  let selectedNodes = [];
-
-  // Create pattern nodes
+  // Create 9 dots for the pattern lock
   for (let i = 0; i < 9; i++) {
-    const node = document.createElement('div');
-    node.className = 'pattern-node';
-    node.addEventListener('click', () => handleNodeClick(i + 1));
-    patternLockContainer.appendChild(node);
+    const dot = document.createElement('div');
+    dot.className = 'dot';
+    dot.addEventListener('click', () => onDotClick(i + 1));
+    document.getElementById('pattern-lock').appendChild(dot);
   }
 
-  // Handle node click
-  function handleNodeClick(nodeValue) {
-    selectedNodes.push(nodeValue);
-	document.getElementById('pwd').value = document.getElementById('pwd').value + nodeValue;
-    updateNodeStyles();
+  // Function to handle dot click
+  function onDotClick(number) {
+    userInput.push(number);
 
-    // Check pattern after 3 nodes are selected (you can adjust this as needed)
-    if (selectedNodes.length === 5) {
-      checkPattern();
-    }
-  }
+    // Update dot color for feedback
+    const dot = document.querySelector(`.dot:nth-child(${number})`);
+    dot.style.backgroundColor = '#2ecc71';
 
-  // Update node styles based on selection
-  function updateNodeStyles() {
-    const nodes = document.querySelectorAll('.pattern-node');
-    nodes.forEach((node, index) => {
-      if (selectedNodes.includes(index + 1)) {
-        node.style.backgroundColor = '#3498db'; // Change background color for selected nodes
+    // Check if the pattern is complete
+    if (userInput.length === 9) {
+      // Compare patterns
+      if (JSON.stringify(userInput) === JSON.stringify(pattern)) {
+        alert('Pattern unlocked!');
+        resetPattern();
       } else {
-        node.style.backgroundColor = 'transparent';
+        alert('Incorrect pattern. Try again.');
+        resetPattern();
       }
-    });
-  }
-
-  // Check the entered pattern (you can customize this logic)
-  function checkPattern() {
-    const correctPattern = [9, 6, 3, 2, 1]; // Example correct pattern
-    if (JSON.stringify(selectedNodes) === JSON.stringify(correctPattern)) {
-      alert('Pattern is correct!');
-    } else {
-      alert('Pattern is incorrect. Try again.');
     }
-
-    // Reset selected nodes after checking
-    selectedNodes = [];
-    updateNodeStyles();
   }
-});
+
+  // Function to reset the pattern
+  function resetPattern() {
+    userInput = [];
+    document.querySelectorAll('.dot').forEach(dot => dot.style.backgroundColor = '#3498db');
+  }
+
+  // Initialize the pattern (replace with your own pattern)
+  pattern = [1, 4, 7, 8, 9];
 </script>
 
 <div id="mainBody" style="display: none;">
