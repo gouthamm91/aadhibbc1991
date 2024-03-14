@@ -3463,7 +3463,7 @@
 
 		// clean the data
 		for (let l=0; l<confDataStr.split('\n').length; l++) {
-			if (confDataStr.split('\n')[l].trim() != '') {var urls = urls + confDataStr.split('\n')[l].split('=')[confDataStr.split('\n')[l].split('=').length - 1].trim() + '\n';}
+			if (confDataStr.split('\n')[l].trim() != '') {var urls = urls + confDataStr.split('\n')[l].split(' = ')[confDataStr.split('\n')[l].split(' = ').length - 1].trim() + '\n';}
 		}
 		var urls = urls.trim();
 		console.log('urls:');
