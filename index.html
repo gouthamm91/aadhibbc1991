@@ -2597,8 +2597,10 @@
 	function redirectToRandomFavUrl(confid) {
 		// get fav data
 		// var confDataStr = document.getElementById(confid).value.trim();
+		var inputBoxValue = document.getElementById('inputbox').value.trim();
 		var confDataStrTmp = document.getElementById(confid).value.trim();
 
+		// standardize the data in the conf textarea
 		for (l=0; l<confDataStrTmp.split('\n').length; l++) {
 			// for every line in the data trim the line
 			var confDataStrTmpCur = confDataStrTmp.split('\n')[l];
@@ -2610,6 +2612,22 @@
 			} else {
 				var confDataStr = confDataStr + '\n';
 			}
+		}
+
+		// filter the urls with values
+		if (inputBoxValue != '') {
+			console.log('inputBox data found as:\n' + inputBoxValue);
+			var confDataStrOut = '';
+			for (ls=0; ls<confDataStr.split('\n').length; ls++) {
+				var flag = false;
+				for (i=0; i<inputBoxValue.trim().split('\n').length; i++) {
+					var word = inputBoxValue.trim().split('\n')[i];
+					if (confDataStr.split('\n')[ls].indexOf(word) > -1) {var flag = true;}
+				}
+				if (flag == true) {var confDataStrOut = confDataStrOut + confDataStr.split('\n')[ls] + '\n';}
+			}
+			var confDataStr = confDataStrOut;
+			console.log('output urls:\n' + confDataStr);
 		}
 
 		var confDataStr = confDataStr.trim();
