@@ -2620,13 +2620,13 @@
 			var confDataStrOut = '';
 			for (ls=0; ls<confDataStr.split('\n').length; ls++) {
 				var flag = false;
-				for (i=0; i<inputBoxValue.trim().split('\n').length; i++) {
+				for (i=0; i<inputBoxValue.trim().split(' ').length; i++) {
 					var word = inputBoxValue.trim().split('\n')[i];
 					if (confDataStr.split('\n')[ls].indexOf(word) > -1) {var flag = true;}
 				}
 				if (flag == true) {var confDataStrOut = confDataStrOut + confDataStr.split('\n')[ls] + '\n';}
 			}
-			var confDataStr = confDataStrOut;
+			var confDataStr = confDataStrOut.trim();
 			console.log('output urls:\n' + confDataStr);
 		}
 
