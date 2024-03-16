@@ -2619,10 +2619,10 @@
 			console.log('inputBox data found as:\n' + inputBoxValue);
 			var confDataStrOut = '';
 			for (ls=0; ls<confDataStr.split('\n').length; ls++) {
-				var flag = false;
+				var flag = true;
 				for (is=0; is<inputBoxValue.trim().split(' ').length; is++) {
-					var word = inputBoxValue.trim().split('\n')[is];
-					if (confDataStr.split('\n')[ls].indexOf(word) > -1) {var flag = true;}
+					var word = inputBoxValue.trim().split(' ')[is];
+					if (confDataStr.split('\n')[ls].indexOf(word) <= -1) {var flag = false;}
 				}
 				if (flag == true) {var confDataStrOut = confDataStrOut + confDataStr.split('\n')[ls] + '\n';}
 			}
@@ -2639,7 +2639,7 @@
 			if (confDataStr.split('\n')[l].trim() != '') {var urls = urls + confDataStr.split('\n')[l].split(' = ')[confDataStr.split('\n')[l].split(' = ').length - 1].trim() + '\n';}
 		}
 		var urls = urls.trim();
-		if (urls == '') {alert('There Were No URLs Found For This Criteria'); return}
+		if (urls == '' || urls == undefined) {alert('There Were No URLs Found For This Criteria'); return}
 		console.log('urls:');
 		console.log(urls);
 
