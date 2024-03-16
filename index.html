@@ -2639,6 +2639,7 @@
 			if (confDataStr.split('\n')[l].trim() != '') {var urls = urls + confDataStr.split('\n')[l].split(' = ')[confDataStr.split('\n')[l].split(' = ').length - 1].trim() + '\n';}
 		}
 		var urls = urls.trim();
+		if (urls == '') {alert('There Were No URLs Found For This Criteria'); return}
 		console.log('urls:');
 		console.log(urls);
 
