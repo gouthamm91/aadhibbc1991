@@ -2620,8 +2620,8 @@
 			var confDataStrOut = '';
 			for (ls=0; ls<confDataStr.split('\n').length; ls++) {
 				var flag = false;
-				for (i=0; i<inputBoxValue.trim().split(' ').length; i++) {
-					var word = inputBoxValue.trim().split('\n')[i];
+				for (is=0; is<inputBoxValue.trim().split(' ').length; is++) {
+					var word = inputBoxValue.trim().split('\n')[is];
 					if (confDataStr.split('\n')[ls].indexOf(word) > -1) {var flag = true;}
 				}
 				if (flag == true) {var confDataStrOut = confDataStrOut + confDataStr.split('\n')[ls] + '\n';}
