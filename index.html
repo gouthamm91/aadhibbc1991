@@ -3795,10 +3795,11 @@
 		function processInput(name) {
 			var currUrl = window.location.href;
 			
-			var currUrl = currUrl.replace(/\?q=/g, '?search=').replace(/\&q=/g, '&search=')
-			var currUrl = currUrl.replace(/\?g=/g, '?group=').replace(/\&g=/g, '&group=')
-			var currUrl = currUrl.replace(/\?c=/g, '?cat=').replace(/\&c=/g, '&cat=')
-			var currUrl = currUrl.replace(/\?category=/g, '?cat=').replace(/\&category=/g, '&cat=')
+			var currUrl = currUrl.replace(/\?q=/g, '?search=').replace(/\&q=/g, '&search=');
+			var currUrl = currUrl.replace(/\?s=/g, '?search=').replace(/\&s=/g, '&search=');
+			var currUrl = currUrl.replace(/\?g=/g, '?group=').replace(/\&g=/g, '&group=');
+			var currUrl = currUrl.replace(/\?c=/g, '?cat=').replace(/\&c=/g, '&cat=');
+			var currUrl = currUrl.replace(/\?category=/g, '?cat=').replace(/\&category=/g, '&cat=');
 			console.log('currUrl: '+ currUrl);
 
 			// document.getElementById('sitescontainer').style.display = 'none';
