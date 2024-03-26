@@ -3796,6 +3796,11 @@
 			var currUrl = window.location.href;
 			console.log('currUrl: '+ currUrl)
 
+			var currUrl = currUrl.replace(/\?q=/g, '?search=').replace(/\&q=/g, '&search=')
+			var currUrl = currUrl.replace(/\?g=/g, '?group=').replace(/\&g=/g, '&group=')
+			var currUrl = currUrl.replace(/\?c=/g, '?cat=').replace(/\&c=/g, '&cat=')
+			var currUrl = currUrl.replace(/\?category=/g, '?cat=').replace(/\&category=/g, '&cat=')
+
 			// document.getElementById('sitescontainer').style.display = 'none';
 
 			// if (currUrl.indexOf('?') == -1) {
